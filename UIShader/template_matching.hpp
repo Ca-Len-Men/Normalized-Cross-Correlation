@@ -93,36 +93,36 @@ sf::Vector2u run_ncc(sf::RenderTexture& source, sf::RenderTexture& templ)
 
 
 
-inline float unpackRGBAtoFloat(const sf::Uint8* pointer) {
-	float r = pointer[0] / 255.0f;
-	float g = pointer[1] / 255.0f;
-	float b = pointer[2] / 255.0f;
-	float a = pointer[3] / 255.0f;
-	return r + g / 256.0f + b / (256.0f * 256.0f) + a / (256.0f * 256.0f * 256.0f);
-}
-
-sf::Vector2u matched_position(const sf::Image& image_ncc_result)
-{
-	auto pixels = image_ncc_result.getPixelsPtr();
-	auto size = image_ncc_result.getSize();
-
-	float max_value = -999999.0;
-	sf::Vector2u max_position = { 0u, 0u };
-
-	for (unsigned int y = 0; y < size.y; ++y)
-		for (unsigned int x = 0; x < size.x; ++x)
-		{
-			auto pixel = pixels + 4 * (y * size.x + x);
-
-			float value = unpackRGBAtoFloat(pixel);
-
-			if (max_value < value)
-			{
-				max_value = value;
-				max_position = { x, y };
-			}
-		}
-
-	// std::cout << "Max value: " << max_value << std::endl;
-	return max_position;
-}
+//inline float unpackRGBAtoFloat(const sf::Uint8* pointer) {
+//	float r = pointer[0] / 255.0f;
+//	float g = pointer[1] / 255.0f;
+//	float b = pointer[2] / 255.0f;
+//	float a = pointer[3] / 255.0f;
+//	return r + g / 256.0f + b / (256.0f * 256.0f) + a / (256.0f * 256.0f * 256.0f);
+//}
+//
+//sf::Vector2u matched_position(const sf::Image& image_ncc_result)
+//{
+//	auto pixels = image_ncc_result.getPixelsPtr();
+//	auto size = image_ncc_result.getSize();
+//
+//	float max_value = -999999.0;
+//	sf::Vector2u max_position = { 0u, 0u };
+//
+//	for (unsigned int y = 0; y < size.y; ++y)
+//		for (unsigned int x = 0; x < size.x; ++x)
+//		{
+//			auto pixel = pixels + 4 * (y * size.x + x);
+//
+//			float value = unpackRGBAtoFloat(pixel);
+//
+//			if (max_value < value)
+//			{
+//				max_value = value;
+//				max_position = { x, y };
+//			}
+//		}
+//
+//	// std::cout << "Max value: " << max_value << std::endl;
+//	return max_position;
+//}
